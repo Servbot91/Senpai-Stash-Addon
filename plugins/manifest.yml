@@ -2,7 +2,7 @@
   name: Senpai Plugin Add-on Pack
   metadata:
     description: Additional plugin pack add-on for the SenpaiV1 theme.
-  version: 1.0e79aa52
-  date: 2026-03-07 18:47:20
+  version: 1.0941d5da
+  date: 2026-03-07 18:53:05
   path: https://raw.githubusercontent.com/Servbot91/Senpai-Stash-Addon/refs/heads/main/plugins/manifest.yml
-  sha256: 84140aab45a7eee01e809161c396e207e2aa52bfda2a58ad853bab9d652f3e4b
+  sha256: 089ae74353f45d916b1a1e9e8f58fe41d4bdc7252f90f2ca647635d842cc1023

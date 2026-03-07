@@ -12,13 +12,15 @@ permissions:
 
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
+      # ---------------------------------
+      # Checkout repository
+      # ---------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # ---------------------------------
       # Get commit info
@@ -27,43 +29,44 @@ jobs:
         id: commit
         run: |
           SHORT_SHA=${GITHUB_SHA::7}
-      
+
           COMMIT_TS=$(git log -1 --pretty=format:'%ct')
-          COMMIT_DATE=$(date -d @$COMMIT_TS +"%Y-%m-%d %H:%M:%S")
-      
+          COMMIT_DATE=$(date -u -d @$COMMIT_TS +"%Y-%m-%d %H:%M:%S")
+
           echo "sha=$SHORT_SHA" >> $GITHUB_OUTPUT
           echo "date=$COMMIT_DATE" >> $GITHUB_OUTPUT
 
       # ---------------------------------
-      # Build zip directly into plugins/
+      # Build deterministic zip
       # ---------------------------------
       - name: Build senpai-addon-pack.zip
         run: |
           cd plugins
-          zip -r senpai-addon-pack.zip senpai-addon-pack
+          rm -f senpai-addon-pack.zip
+          find senpai-addon-pack -type f | sort | zip -X senpai-addon-pack.zip -@
 
       # ---------------------------------
-      # Calculate SHA256 of committed zip
+      # Calculate SHA256
       # ---------------------------------
       - name: Calculate SHA256
         id: hash
         run: |
-          HASH=$(sha256sum plugins/senpai-addon-pack.zip | awk '{ print $1 }')
+          HASH=$(sha256sum plugins/senpai-addon-pack.zip | awk '{print $1}')
           echo "sha256=$HASH" >> $GITHUB_OUTPUT
 
       # ---------------------------------
       # Update manifest.yml
       # ---------------------------------
-      - name: Update version, date, and sha256
+      - name: Update version, date, sha256
         run: |
           FILE="plugins/manifest.yml"
 
-          sed -i "s|version:.*|version: 1.0${{ steps.commit.outputs.sha }}|" $FILE
+          sed -i "s|version:.*|version: 1.0-${{ steps.commit.outputs.sha }}|" $FILE
           sed -i "s|date:.*|date: ${{ steps.commit.outputs.date }}|" $FILE
           sed -i "s|sha256:.*|sha256: ${{ steps.hash.outputs.sha256 }}|" $FILE
 
       # ---------------------------------
-      # Commit changes
+      # Commit updated files
       # ---------------------------------
       - name: Commit updated files
         run: |
@@ -76,6 +79,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-build zip and update metadata (1.0-${{ steps.commit.outputs.sha }})"
+            git commit -m "Auto-build plugin zip (1.0-${{ steps.commit.outputs.sha }}) [skip ci]"
             git push
           fi

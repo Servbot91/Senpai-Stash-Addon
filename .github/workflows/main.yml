@@ -26,11 +26,11 @@ jobs:
       - name: Get commit info
         id: commit
         run: |
-          SHORT_SHA=$(git rev-parse --short HEAD)
-          # Get commit timestamp in seconds
+          SHORT_SHA=${GITHUB_SHA::7}
+      
           COMMIT_TS=$(git log -1 --pretty=format:'%ct')
-          # Format as YYYY-MM-DD HH:MM:SS
           COMMIT_DATE=$(date -d @$COMMIT_TS +"%Y-%m-%d %H:%M:%S")
+      
           echo "sha=$SHORT_SHA" >> $GITHUB_OUTPUT
           echo "date=$COMMIT_DATE" >> $GITHUB_OUTPUT
 

@@ -3,7 +3,7 @@ The Senpai Addon Pack features additional plugins that cater to the Senpai theme
 
 ### Additional Plugins
 1. [DiceR](https://discourse.stashapp.cc/t/dicer-oll-a-randomizer-with-local-cache-to-prevent-repetition-and-encourage-discovery/5721)
-    - Version: 1.3
+    - Version: 1.4
 2. [External Links Enhanced](https://discourse.stashapp.cc/t/external-links-enhanced/584)
     - Version: 1.2
 3. [Hot Or Not V2](discourse.stashapp.cc/t/hotornotv2/5822)

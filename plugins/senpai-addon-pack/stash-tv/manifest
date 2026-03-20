@@ -3,8 +3,8 @@ name: Stash TV
 metadata:
   description: A TikTok-like vertical scroller interface for Stash. Forked from Stash
     Reels.
-version: 2.13.4-8e48a44
-date: "2026-02-24 09:15:22"
+version: 2.14.3-29f5c70
+date: "2026-03-14 07:03:42"
 requires: []
 source_repository: https://secondfolder.github.io/stash-plugins/stable/index.yml
 files:
@@ -34,6 +34,7 @@ files:
 - app/assets/br-BevDKjWV.svg
 - app/assets/by-EkqhOCLw.svg
 - app/assets/dm-1y7pMT9p.svg
+- app/assets/index-C9HZcRwV.js.map
 - app/assets/as-D0o6y06s.svg
 - app/assets/br-yD1Bsfyi.svg
 - app/assets/es-mjGyAbGt.svg
@@ -73,7 +74,6 @@ files:
 - app/assets/fk-xSiwjKus.svg
 - app/assets/hr-XALXB04A.svg
 - app/assets/eg-BoRC_5b8.svg
-- app/assets/index-DQuY99Ob.js.map
 - app/assets/sv-zWfA2gU5.svg
 - app/assets/zm-4yqbxxr7.svg
 - app/assets/me-Bh3GE2Mw.svg
@@ -122,6 +122,7 @@ files:
 - app/assets/lk-Kj0WqqQ6.svg
 - app/assets/sm-ChSbRMAO.svg
 - app/assets/zm-B4DXStgu.svg
+- app/assets/index-C9HZcRwV.js
 - app/assets/dg-Cw_owxTN.svg
 - app/assets/es-ga-BKM8aBaU.svg
 - app/assets/nf-CV85_wcL.svg
@@ -138,7 +139,6 @@ files:
 - app/assets/py--AwwVDGI.svg
 - app/assets/gb-wls-C4LdH8Nd.svg
 - app/assets/lk-B3k2yiKb.svg
-- app/assets/index-DQuY99Ob.js
 - app/assets/bn-DZvr776X.svg
 - app/assets/im-MV303kBE.svg
 - app/assets/tm-D_7TRZyU.svg

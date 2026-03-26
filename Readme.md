@@ -3,7 +3,7 @@ The Senpai additional plugins is intended to create a managed stable out of the 
  
 Note: By installing the additional plugins you lose the ability to manually update the plugins included in the pack unless you delete them yourself and install through the stash UI however if an update is placed to the Senpai Additional Plugin theme you may receive plugin conflicts. 
 
-### Additional Plugins
+### Included Plugins
 1. [DiceR](https://discourse.stashapp.cc/t/dicer-oll-a-randomizer-with-local-cache-to-prevent-repetition-and-encourage-discovery/5721)
     - Version: 1.4
 2. [External Links Enhanced](https://discourse.stashapp.cc/t/external-links-enhanced/584)

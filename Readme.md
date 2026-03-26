@@ -1,5 +1,7 @@
-# Senpai Addon Pack
-The Senpai Addon Pack features additional plugins that cater to the Senpai theme and overall user experience.
+# Senpai Additional Plugins
+The Senpai additional plugins is intended to create a managed stable out of the box definitive experience for anyone new to stash or simply for people who dont want to manage their stash plugins or go plugin hunting. These are all stable and well written plugins that are aimed to enhance the user experience in a myriad of ways.
+ 
+Note: By installing the additional plugins you lose the ability to manually update the plugins included in the pack unless you delete them yourself and install through the stash UI however if an update is placed to the Senpai Additional Plugin theme you may receive plugin conflicts. 
 
 ### Additional Plugins
 1. [DiceR](https://discourse.stashapp.cc/t/dicer-oll-a-randomizer-with-local-cache-to-prevent-repetition-and-encourage-discovery/5721)

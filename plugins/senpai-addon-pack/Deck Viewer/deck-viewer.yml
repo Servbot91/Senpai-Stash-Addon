@@ -1,0 +1,48 @@
+name: Deck Viewer
+description: An optimized fullscreen image viewer with one-handed controls complete with performer, gallery, and image integration that hijacks the default stash viewbox.
+version: 1.0
+
+settings:
+  # Playback settings
+  autoPlayInterval:
+    displayName: Auto-play Interval (ms)
+    description: 'Time between automatic transitions in milliseconds (100-5000, default: 500)'
+    type: NUMBER
+  transitionEffect:
+    displayName: Transition Effect
+    description: 'Swiper effect: slide, fade, cards, coverflow, flip, cube (default: cards)'
+    type: STRING
+
+  # UI settings
+#  showProgressBar:
+#   displayName: Show Progress Bar
+#   description: 'Display progress bar at the top (default: enabled)'
+#   type: BOOLEAN
+  showCounter:
+    displayName: Show Counter
+    description: 'Display "3 of 150" counter (default: enabled)'
+    type: BOOLEAN
+
+
+  # Color settings (0-360 for hue)
+  ambientColorHue:
+    displayName: Ambient Glow Hue
+    description: 'Background ambient glow hue (0-360, default: 260 = purple)'
+    type: NUMBER
+  imageGlowIntensity:
+    displayName: Image Glow Intensity
+    description: 'Glow/shadow intensity around images (0-100, default: 40)'
+    type: NUMBER
+
+ui:
+  javascript:
+    - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
+    - deck-viewer.js
+  css:
+    - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+    - deck-viewer-styling.css
+  csp:
+    script-src:
+      - https://cdn.jsdelivr.net
+    style-src:
+      - https://cdn.jsdelivr.net

@@ -19,12 +19,11 @@
 .image-card img,
 .image-thumbnail,
 .Lightbox-carousel,
+.image-image,
 .react-photo-gallery--gallery img,
 
 /* group */
 .group-card-image,
-.group-images,
-.group-card,
 
 /* gallery */
 .gallery-image,
@@ -132,6 +131,7 @@ div:hover > .image-header,
 .image-thumbnail:hover,
 .TruncatedText.image-card__description:hover,
 .wall-item:hover img,
+.image-image:hover,
 
 
 /* group */
@@ -153,6 +153,7 @@ div:hover > .image-header,
 .card-section:hover,
 .name-data:hover,
 .aliases-data:hover,
+.performer-card img:hover,
 
 /* studio */ 
 .studio-name:hover,

@@ -98,7 +98,11 @@
     DiceRLogger.log("event", `🎲 Roll #${rollCount}`, { entity, internalFilter });
 
     const cacheKey = getCacheKey(entity, internalFilter);
+<<<<<<< HEAD
 	const shouldUseSampling = (entity === "Image" || entity === "Scene" || entity === "Gallery") && !internalFilter;
+=======
+    const shouldUseSampling = (entity === "Image" || entity === "Scene") && !internalFilter;
+>>>>>>> 2e333ff2bfc5245737ddf9d248afb1bb98d39c0d
 
     if (shouldUseSampling) {
       return await randomWithSamplingAndTracking(entity, idField, redirectPrefix, internalFilter, cacheKey);
@@ -246,6 +250,7 @@
   }
 
   // Helper function to get random item via sampling
+<<<<<<< HEAD
 async function getRandomItemBySampling(entity, idField, internalFilter) {
   const realEntityPlural = getPlural(entity);
   
@@ -324,10 +329,31 @@ async function getRandomItemBySampling(entity, idField, internalFilter) {
       query Find${realEntityPlural}($filter: FindFilterType${filterArg}) {
         find${realEntityPlural}(filter: $filter${filterVar}) {
           ${idField} { id }
+=======
+  async function getRandomItemBySampling(entity, idField, internalFilter) {
+    const realEntityPlural = getPlural(entity);
+    
+    // First get total count
+    let countFilterArg = "";
+    let countFilterVar = "";
+    let countVariables = {};
+    
+    if (internalFilter) {
+      countFilterArg = `, $internal_filter: ${entity}FilterType`;
+      countFilterVar = `, ${entity.toLowerCase()}_filter: $internal_filter`;
+      countVariables.internal_filter = internalFilter;
+    }
+
+    const countQuery = `
+      query Count${realEntityPlural}($filter: FindFilterType${countFilterArg}) {
+        find${realEntityPlural}(filter: $filter${countFilterVar}) {
+          count
+>>>>>>> 2e333ff2bfc5245737ddf9d248afb1bb98d39c0d
         }
       }
     `;
 
+<<<<<<< HEAD
     let pageResp = await fetch('/graphql', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -358,6 +384,91 @@ async function getRandomItemBySampling(entity, idField, internalFilter) {
     return null;
   }
 }
+=======
+    try {
+      let countResp = await fetch('/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          query: countQuery, 
+          variables: { filter: {}, ...countVariables } 
+        })
+      });
+      let countData = await countResp.json();
+
+      if (countData.errors) {
+        return null;
+      }
+
+      const totalCount = countData.data[`find${realEntityPlural}`].count;
+      
+      if (totalCount === 0) {
+        return null;
+      }
+
+      // Generate random page and offset
+      const pageSize = 1000;
+      const totalPages = Math.ceil(totalCount / pageSize);
+      const randomPage = Math.floor(Math.random() * totalPages);
+      const itemsInLastPage = totalCount % pageSize || pageSize;
+      const maxOffset = (randomPage === totalPages - 1) ? itemsInLastPage : pageSize;
+      const randomOffsetInPage = Math.floor(Math.random() * maxOffset);
+
+      // Fetch the specific page
+      let filterArg = "";
+      let filterVar = "";
+      let variables = {
+        filter: { 
+          per_page: pageSize,
+          page: randomPage + 1
+        }
+      };
+
+      if (internalFilter) {
+        filterArg = `, $internal_filter: ${entity}FilterType`;
+        filterVar = `, ${entity.toLowerCase()}_filter: $internal_filter`;
+        variables.internal_filter = internalFilter;
+      }
+
+      const pageQuery = `
+        query Find${realEntityPlural}($filter: FindFilterType${filterArg}) {
+          find${realEntityPlural}(filter: $filter${filterVar}) {
+            ${idField} { id }
+          }
+        }
+      `;
+
+      let pageResp = await fetch('/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: pageQuery, variables })
+      });
+      let pageData = await pageResp.json();
+
+      if (pageData.errors) {
+        return null;
+      }
+
+      let items = pageData.data[`find${realEntityPlural}`][idField];
+
+      if (!items || items.length === 0) {
+        return null;
+      }
+
+      // Select random item from the page
+      const randomIndex = randomOffsetInPage < items.length ? randomOffsetInPage : Math.floor(Math.random() * items.length);
+      const selectedItem = items[randomIndex];
+
+      return {
+        item: selectedItem,
+        id: selectedItem.id
+      };
+    } catch (error) {
+      DiceRLogger.log("error", "Sampling failed", error);
+      return null;
+    }
+  }
+>>>>>>> 2e333ff2bfc5245737ddf9d248afb1bb98d39c0d
 
   // Existing cache-based approach for smaller collections
   async function randomWithFullCache(entity, idField, redirectPrefix, internalFilter, cacheKey) {
@@ -490,6 +601,7 @@ async function randomButtonHandler() {
     return randomGlobal('Gallery', 'galleries', '/galleries/');
   }
 
+<<<<<<< HEAD
   // Handle specific gallery page - should roll to another gallery
   let galleryId = getIdFromPath(/^\/galleries\/(\d+)/);
   if (galleryId) {
@@ -605,6 +717,8 @@ function convertUrlFilterToInternalFilter(filterParam) {
 }
 
 
+=======
+>>>>>>> 2e333ff2bfc5245737ddf9d248afb1bb98d39c0d
 /* ==========================
    BUTTON INJECTION
 ========================== */

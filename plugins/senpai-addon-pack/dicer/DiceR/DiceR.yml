@@ -1,6 +1,10 @@
 name: DiceR
 description: Randomizer with logic to prevent repetition until exhaustion and include new content while maintaining list integrity.
+<<<<<<< HEAD
 version: 1.5
+=======
+version: 1.4
+>>>>>>> 2e333ff2bfc5245737ddf9d248afb1bb98d39c0d
 url: https://discourse.stashapp.cc/t/dicer-oll-a-randomizer-with-local-cache-to-prevent-repetition-and-encourage-discovery/5721
 ui:
   requires: []

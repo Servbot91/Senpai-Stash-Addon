@@ -5,7 +5,7 @@ Note: By installing the additional plugins you lose the ability to manually upda
 
 ### Included Plugins
  1. [DiceR](https://discourse.stashapp.cc/t/dicer-oll-a-randomizer-with-local-cache-to-prevent-repetition-and-encourage-discovery/5721)
-    * Version: 1.3
+    * Version: 1.7
  2. [External Links Enhanced](https://discourse.stashapp.cc/t/external-links-enhanced/584)
     * Version: 1.2
  3. [Hot Or Not V3](https://discourse.stashapp.cc/t/hotornot-v3/6199)
